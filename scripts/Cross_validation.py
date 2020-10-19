@@ -8,11 +8,6 @@ import numpy as np
 from Implementations import *
 from proj1_helpers import *
 
-
-# In[65]:
-
-
-
 def build_k_indices(y, k_fold, seed):
     """build k indices for k-fold."""
     num_row = y.shape[0]
@@ -34,17 +29,12 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
      k-fold cross validation
      return the accuracy and loss of corresponding model
     """
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # get k'th subgroup in test, others in train: TODO
-    # ***************************************************
     k_indices = build_k_indices(y, k_fold, seed)
     loss = 0
     accuracy = 0
     for i in range(k_fold):
         tx_test = tx[k_indices[i]]
         y_test = y[k_indices[i]]
-        print(tx_test)
         tx_train = np.delete(tx, k_indices[i], axis = 0)
         y_train = np.delete(y, k_indices[i], axis = 0)
         if model == 'least_squares_GD':
