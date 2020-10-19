@@ -35,6 +35,8 @@ def Hyperparameter_optimization(y, tx, k_fold, lambdas , gammas, initial_w =1, m
     print("Model: {0} \n Optimal accuracy: {1} \n Optimal lambda_: {2} \n Optimal gamma: {3} \n ".format(
           model, optimal_accuracy, optimal_lambda_, optimal_gamma))
     
+    return optimal_accuracy, optimal_lambda_, optimal_gamma
+    
             
     
 
