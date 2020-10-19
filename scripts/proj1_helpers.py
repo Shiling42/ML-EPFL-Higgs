@@ -27,12 +27,15 @@ def load_csv_data(data_path, sub_sample=False):
     return yb, input_data, ids
 
 
-def predict_labels(weights, data):
+def predict_labels(weights, data, model = 'ridge_regression'):
     """Generates class predictions given weights, and a test data matrix"""
     y_pred = np.dot(data, weights)
-    y_pred[np.where(y_pred <= 0)] = -1
-    y_pred[np.where(y_pred > 0)] = 1
-    
+    if model == 'reg_logistic_regression' or model == 'logistic_regression':
+        y_pred[np.where(y_pred <= 0)] = 0
+        y_pred[np.where(y_pred > 0)] = 1
+    else:
+        y_pred[np.where(y_pred <= 0.5)] = 0
+        y_pred[np.where(y_pred > 0.5)] = 1
     return y_pred
 
 
