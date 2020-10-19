@@ -68,7 +68,7 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):
         w -= gamma * gradient
         ws.append(w)
         loss = compute_loss_logistic(y, tx, w)
-        if iter % 10 == 0:
+        if iter % int(max_iters/10) == 0:
             print("Current iteration={i}, loss={l}".format(i=iter, l=loss))
         losses.append(loss)
     return losses[-1],ws[-1]
@@ -83,7 +83,7 @@ def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
         gradient = compute_gradient_reg_logistic(y, tx, w, lambda_)
         w -= gamma * gradient
         loss = compute_loss_logistic(y, tx, w)
-        if iter % 10 == 0:
+        if iter % int(max_iters/10) == 0:
             print("Current iteration={i}, loss={l}".format(i=iter, l=loss))
         losses.append(loss)
         ws.append(w)
