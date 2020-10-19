@@ -30,7 +30,10 @@ def compute_accuracy(tx_test, y_test, w, model):
     return accuracy
 
 def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, max_iters = 100, model = 'least_squares'):
-    """return the weight and loss of ridge regression."""
+    """
+     k-fold cross validation
+     return the accuracy and loss of corresponding model
+    """
     # ***************************************************
     # INSERT YOUR CODE HERE
     # get k'th subgroup in test, others in train: TODO
