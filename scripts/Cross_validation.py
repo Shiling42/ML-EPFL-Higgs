@@ -20,7 +20,7 @@ def build_k_indices(y, k_fold, seed):
 
 def compute_accuracy(tx_test, y_test, w, model):
     """compute the accuracy rate of corresponding model"""
-    accuracy = 1-np.sum(np.abs(y_test-predict_labels(w, tx_test,'model')))/len(tx_test)
+    accuracy = 1-np.sum(np.abs(y_test-predict_labels(w, tx_test,model)))/len(tx_test)
     
     return accuracy
 
