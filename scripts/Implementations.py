@@ -23,19 +23,19 @@ def least_squares_GD(y, tx, initial_w, max_iters, gamma):
 
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     """Implementations of linear regression using stochastic gradient descent"""
-    ws = [initial_w]
-    losses = []
     w = initial_w
     ws = [w]
     loss = compute_loss_LS(y, tx, w)
-    for y_batch, tx_batch in batch_iter(y, tx, batch_size=1, num_batches=1):
-        gradient = compute_gradient_LS(y_batch, tx_batch, w)
-        w -= gamma * gradient
-        loss = compute_loss_LS(y_batch, tx_batch, w)
-        ws.append(w)
-        losses.append(loss)
- #       print("Stochastic Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
- #             bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
+    losses [loss]
+    for iter in range(max_iters):
+        for y_batch, tx_batch in batch_iter(y, tx, batch_size=1, num_batches=1):
+            gradient = compute_gradient_LS(y_batch, tx_batch, w)
+            w -= gamma * gradient
+            loss = compute_loss_LS(y_batch, tx_batch, w)
+            ws.append(w)
+            losses.append(loss)
+     #       print("Stochastic Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
+     #             bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
 
     return losses[-1], ws[-1]
 
