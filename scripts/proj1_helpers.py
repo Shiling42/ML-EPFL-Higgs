@@ -33,9 +33,11 @@ def predict_labels(weights, data, model = 'ridge_regression'):
     if model == 'reg_logistic_regression' or model == 'logistic_regression':
         y_pred[np.where(y_pred <= 0)] = 0
         y_pred[np.where(y_pred > 0)] = 1
-    else:
+    elif model in ['least_squares_GD','least_squares_SGD','least_squares','ridge_regression']:
         y_pred[np.where(y_pred <= 0.5)] = 0
         y_pred[np.where(y_pred > 0.5)] = 1
+    else:
+        raise ValueError("Unknown model! Please check it!")
     return y_pred
 
 

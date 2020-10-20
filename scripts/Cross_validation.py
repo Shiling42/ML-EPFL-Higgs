@@ -67,6 +67,8 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
             loss = loss + loss_temp
             accuracy_tmp= compute_accuracy(tx_test, y_test, w_temp, model)
             accuracy = accuracy + accuracy_tmp
+        else:
+            raise ValueError("Unknown model! Please check it!")
             
     loss = np.squeeze(loss / k_fold)
     accuracy = accuracy / k_fold
