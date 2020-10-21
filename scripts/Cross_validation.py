@@ -72,7 +72,7 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
             
     loss = np.squeeze(loss / k_fold)
     accuracy = accuracy / k_fold
-    print(model, loss, accuracy)
+    print(' Model', model,'\n Loss:', loss, '\n Accuracy:', accuracy)
     return loss, accuracy
     
     

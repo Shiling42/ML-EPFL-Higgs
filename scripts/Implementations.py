@@ -59,7 +59,7 @@ def ridge_regression(y, tx, lambda_):
 def logistic_regression(y, tx, initial_w, max_iters, gamma):
     """Implementations of logistic regression using gradient descent"""
     w = initial_w
-    print(w)
+    #print(w)
     loss = compute_loss_logistic(y, tx, w)
     losses = [loss]
     ws = [w]
