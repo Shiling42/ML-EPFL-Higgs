@@ -60,11 +60,11 @@ def compute_gradient_logistic(y, tx, w):
     gradient = tx.T.dot(sigmoid(tmp) - y)
     return gradient
 
-def compute_loss_reg_logistic(y, tx, w, lambda_):
-    """compute the loss of regularized logistic regression model."""
-
-    loss = compute_loss_logistic(y, tx, w) + 0.5 * lambda_ * w.T.dot(w)
-    return loss
+#def compute_loss_reg_logistic(y, tx, w, lambda_):
+#    """compute the train loss of regularized logistic regression model."""
+#
+#    loss = compute_loss_logistic(y, tx, w) + 0.5 * lambda_ * w.T.dot(w)
+#    return loss
 
 def compute_gradient_reg_logistic(y, tx, w, lambda_):
     """compute the gradient of regularized logistic regression model."""

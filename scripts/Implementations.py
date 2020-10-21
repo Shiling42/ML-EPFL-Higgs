@@ -26,7 +26,7 @@ def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     w = initial_w
     ws = [w]
     loss = compute_loss_LS(y, tx, w)
-    losses [loss]
+    losses = [loss]
     for iter in range(max_iters):
         for y_batch, tx_batch in batch_iter(y, tx, batch_size=1, num_batches=1):
             gradient = compute_gradient_LS(y_batch, tx_batch, w)
