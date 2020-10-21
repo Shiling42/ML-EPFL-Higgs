@@ -50,7 +50,7 @@ def compute_loss_logistic(y,tx,w):
     """compute the loss of logistic regression model."""
 
     tmp = tx.dot(w)
-    loss = y.T.dot(np.log(sigmoid(tmp))) + (1 - y).T.dot(np.log(1-sigmoid(tmp)))
+    loss = -y.T.dot(np.log(sigmoid(tmp))) + (y - 1).T.dot(np.log(1-sigmoid(tmp)))
     loss = np.asscalar(loss)
     return loss
 
