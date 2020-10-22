@@ -87,7 +87,7 @@ def outlier_cleaning_IQR(tx,n_IQR):
         q3_tx = np.quantile(tx[:,i], 0.75,axis=0)
         iqr_tx = q3_tx - q1_tx
         lower = q1_tx - n_IQR * iqr_tx
-        upper = q1_tx + n_IQR * iqr_tx
+        upper = q3_tx + n_IQR * iqr_tx
         
         #calculate mean value for each feature
         mean = np.mean(tx[:,i])
