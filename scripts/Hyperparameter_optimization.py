@@ -38,7 +38,6 @@ def Hyperparameter_optimization(y, tx, k_fold, lambdas , gammas, initial_w =1, m
         - loss          = loss of the final trained model
         - accuracy      = accuracy of the final trained model
     """
-    """
     accuracies = np.zeros((len(lambdas), len(gammas)))
     for index_lambda_, lambda_ in enumerate(lambdas):
         for index_gamma, gamma in enumerate(gammas):
