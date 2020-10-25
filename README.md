@@ -38,6 +38,8 @@ The preprocessing includes the following steps:
 - Clean outliers using IQR
 - Standardize features
 
+Note that since the labels are changed from {- 1, 1} to {0, 1} for training, we modify the `predict_labels` function in `proj1_helper1.py` accordingly.
+
 
 
 ## Methods

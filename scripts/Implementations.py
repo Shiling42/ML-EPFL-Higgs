@@ -118,7 +118,6 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):
         - ws[-1]        = the final weights the training
     """
     w = initial_w.copy()
-    #print(w)
     loss = compute_loss_logistic(y, tx, w)
     losses = [loss]
     ws = [w]

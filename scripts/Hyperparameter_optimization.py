@@ -1,12 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
 
-
-#get_ipython().run_line_magic('load_ext', 'autoreload')
-#get_ipython().run_line_magic('autoreload', '2')
-#get_ipython().run_line_magic('reload_ext', 'autoreload')
 import numpy as np
 from Implementations import *
 from Implementations_helpers import *

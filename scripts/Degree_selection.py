@@ -1,23 +1,17 @@
 # coding: utf-8
 
-# In[1]:
 
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-
-# ## Feature vector extending
-
-
-
+from Cross_validation import *
 from proj1_helpers import *
 from Implementations import *
 from Implementations_helpers import *
 
 
-
-## polynomial basis functions
+## Feature vector extending
+## Polynomial basis functions
 def build_poly(x, degree):
     """
     Build up polynomial basis functions for input data x, for j=0 up to j=degree.
@@ -37,13 +31,7 @@ def build_poly(x, degree):
     return matrix
 
 
-# ## Degree selection (use ridge regression)
-
-
-from Cross_validation import *
-
-
-## degree selection
+## Degree selection (use ridge regression)
 def degree_selection(x,y,degree_range):
     """
     Select the optimal degree for best accuracy

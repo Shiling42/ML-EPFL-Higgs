@@ -73,6 +73,7 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
         - loss          = loss of the final trained model
         - accuracy      = accuracy of the final trained model
     """
+    seed = 2
     k_indices = build_k_indices(y, k_fold, seed)
     loss = 0
     accuracy = 0
@@ -119,24 +120,3 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
     print(' Model', model,'\n Loss:', loss, '\n Accuracy:', accuracy)
     return loss, accuracy
     
-    
-
-
-
-
-y = np.random.rand(20).reshape((20,1))
-y[np.where(y <= 0.5)] = 0
-y[np.where(y > 0.5)] = 1
-tx = np.c_[y-1,y+1]
-weight = np.zeros((tx.shape[1], 1)) + 0.5
-weight = weight*0.5
-lambda_ = 0.1
-max_iters = 100
-gamma = 0.1
-seed = 2
-
-
-
-
-
-
