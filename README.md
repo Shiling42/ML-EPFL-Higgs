@@ -25,7 +25,7 @@ project
         proj1_helpers.py                # helper functions
         run.py                          # to generate the predictions of test.csv
         prediction.csv                  # the predictions of test.csv
-        Train_model_test_Modified.ipynb       #Jupyter Notebook for training and testing models
+        Train_model_test.ipynb          #Jupyter Notebook for training and testing models
         data_preprocessing.ipynb            #Jupyter Notebook for data processing and Visualization
 
 
