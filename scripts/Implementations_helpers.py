@@ -52,13 +52,13 @@ def compute_loss_logistic(y,tx,w):
 
     tmp = tx.dot(w)
     loss = -y.T.dot(np.log(sigmoid(tmp))) + (y - 1).T.dot(np.log(1-sigmoid(tmp)))
-    loss = np.asscalar(loss)/y.shape[0]
+    loss = np.asscalar(loss)
     return loss
 
 def compute_gradient_logistic(y, tx, w):
     """compute the gradient of logistic regression model."""
     tmp = tx.dot(w)
-    gradient = tx.T.dot(sigmoid(tmp) - y)/y.shape[0]
+    gradient = tx.T.dot(sigmoid(tmp) - y)
     return gradient
 
 #def compute_loss_reg_logistic(y, tx, w, lambda_):
