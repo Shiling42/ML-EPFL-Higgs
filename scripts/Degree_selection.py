@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 
 # ## Feature vector extending
 
-# In[2]:
 
 
 from proj1_helpers import *
@@ -17,14 +16,19 @@ from Implementations import *
 from Implementations_helpers import *
 
 
-# In[3]:
-
 
 ## polynomial basis functions
 def build_poly(x, degree):
-    "polynomial basis functions for input data x, for j=0 up to j=degree."
-    "output:new data"
+    """
+    Build up polynomial basis functions for input data x, for j=0 up to j=degree.
 
+    Input:
+        - x         = the input data (features)
+        - degree    = the desired degree 
+    
+    Output:
+        - extended feature = [tx^1,...,tx^degree]
+    """
     matrix = np.ones((x.shape[0], 1))
     for j in range(1, degree+1):
         extend = np.power(x, j)
@@ -35,18 +39,24 @@ def build_poly(x, degree):
 
 # ## Degree selection (use ridge regression)
 
-# In[13]:
-
 
 from Cross_validation import *
 
 
-# In[16]:
-
-
 ## degree selection
 def degree_selection(x,y,degree_range):
-    
+    """
+    Select the optimal degree for best accuracy
+
+    Input:
+        - x             = feature
+        - y             = label
+        - degree_range  = the range of degree for selection
+
+    Output:
+        - print accuracy for all input degrees
+
+    """
     for degree in range(degree_range):
         matrix = build_poly(x, degree)
         print('degree=',degree)

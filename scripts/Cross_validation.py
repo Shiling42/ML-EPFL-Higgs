@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+
 
 
 import numpy as np
@@ -66,7 +66,7 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
                           'least-squares_GD'
                           'least_squares_SGD'
                           'ridge_regression'
-                          'logistic'ragression'
+                          'logistic_ragression'
                           'reg_logistic_regression_'
     
     Output:
@@ -122,8 +122,6 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
     
 
 
-# In[71]:
-
 
 
 y = np.random.rand(20).reshape((20,1))
@@ -138,7 +136,6 @@ gamma = 0.1
 seed = 2
 
 
-# In[ ]:
 
 
 

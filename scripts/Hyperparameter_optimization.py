@@ -14,14 +14,30 @@ from proj1_helpers import *
 from Cross_validation import *
 
 
-# In[ ]:
-
 
 def Hyperparameter_optimization(y, tx, k_fold, lambdas , gammas, initial_w =1, max_iters = 100, model = 'least_squares'):
     """optimize the hyperameters for correspongding model/algorithm
     lambdas: the range of lambda_
-    gammas: the range of gamma
     
+         Input:
+        - y             = labels
+        - tx            = features
+        - k_fold        = number of folds
+        - lambdas       = the range of L2 prefactor
+        - gammas        = the range of learning rate
+        - initial_w     = initial weights
+        - max_iters     = maximum iterations
+        - model         = 'least_squares'
+                          'least-squares_GD'
+                          'least_squares_SGD'
+                          'ridge_regression'
+                          'logistic_ragression'
+                          'reg_logistic_regression_'
+    
+    Output:
+        - loss          = loss of the final trained model
+        - accuracy      = accuracy of the final trained model
+    """
     """
     accuracies = np.zeros((len(lambdas), len(gammas)))
     for index_lambda_, lambda_ in enumerate(lambdas):
