@@ -26,7 +26,7 @@ project
         run.py                          # to generate the predictions of test.csv
         prediction.csv                  # the predictions of test.csv
         Train_model_test.ipynb          #Jupyter Notebook for training and testing models
-        data_preprocessing.ipynb            #Jupyter Notebook for data processing and Visualization
+        data_preprocessing.ipynb        #Jupyter Notebook for data processing and Visualization
 
 
    
@@ -57,9 +57,10 @@ Six machine learning methods are implemented for this Higgs boson identification
 - Logistic regression
 - Regularized logistic regression
 
-The implementations of these methods are in `./data/implementation.py`,
+The implementations of these methods are in `./data/implementation.py`.
 
 ## Result
+To get the `prediction.csv`, go to `./script` and run `python run.py`.
 
 On [Aicrowd Leaderboard](https://www.aicrowd.com/challenges/epfl-machine-learning-higgs/leaderboards):
 
