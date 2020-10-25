@@ -9,7 +9,17 @@ from Implementations import *
 from proj1_helpers import *
 
 def build_k_indices(y, k_fold, seed):
-    """build k indices for k-fold."""
+    """
+    build k indices for k-fold.
+    
+    Input:
+        - y         = data for k-fold
+        - k_fold    = the number of folds
+        - seed      = seed for random number geneartor
+
+    Output:
+        - an k-fold data
+    """
     num_row = y.shape[0]
     interval = int(num_row / k_fold)
     np.random.seed(seed)
@@ -19,7 +29,22 @@ def build_k_indices(y, k_fold, seed):
     return np.array(k_indices)
 
 def compute_accuracy(tx_test, y_test, w, model):
-    """compute the accuracy rate of corresponding model"""
+    """
+    compute the accuracy rate of corresponding model
+    
+    Input: 
+        - tx_test   = samples' features for test
+        - y_test    = labels for test
+        - w         = weights of the input model
+        - model     = 'least_squares'
+                      'least-squares_GD'
+                      'least_squares_SGD'
+                      'ridge_regression'
+                      'logistic'ragression'
+                      'reg_logistic_regression_'
+    Output:
+        - accuracy  = the accuracy of the input model
+    """
     accuracy = 1-np.sum(np.abs(y_test-predict_labels(w, tx_test,model)))/len(tx_test)
     
     return accuracy
@@ -28,6 +53,25 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
     """
      k-fold cross validation
      return the accuracy and loss of corresponding model
+     
+     Input:
+        - y             = labels
+        - tx            = features
+        - k_fold        = number of folds
+        - lambda_       = prefactor of L2 norm
+        - gamma         = learning rate (step size)
+        - initial_w     = initial weights
+        - max_iters     = maximum iterations
+        - model         = 'least_squares'
+                          'least-squares_GD'
+                          'least_squares_SGD'
+                          'ridge_regression'
+                          'logistic'ragression'
+                          'reg_logistic_regression_'
+    
+    Output:
+        - loss          = loss of the final trained model
+        - accuracy      = accuracy of the final trained model
     """
     k_indices = build_k_indices(y, k_fold, seed)
     loss = 0

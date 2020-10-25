@@ -5,7 +5,20 @@ import numpy as np
 from Implementations_helpers import *
 
 def least_squares_GD(y, tx, initial_w, max_iters, gamma):
-    """Implementations of linear regression using gradient descent"""
+    """
+    Implementations of linear regression using gradient descent
+    
+    Input: 
+        - y         = the label
+        - tx        = the samples
+        - initial_w = the initial weights
+        - max_iters = the maximum number of iterations
+        - gamma     = learning rate (step size)
+
+    Output:
+        - losses[-1]    = the final loss after traning
+        - ws[-1]        = the final weights the training
+    """
     w = initial_w.copy()
     ws = [w]
     loss = compute_loss_LS(y, tx, w)
@@ -22,7 +35,20 @@ def least_squares_GD(y, tx, initial_w, max_iters, gamma):
     return losses[-1], ws[-1]
 
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
-    """Implementations of linear regression using stochastic gradient descent"""
+    """
+    Implementations of linear regression using stochastic gradient descent
+    
+    Input: 
+        - y         = the label
+        - tx        = the samples
+        - initial_w = the initial weights
+        - max_iters = the maximum number of iterations
+        - gamma     = learning rate (step size)
+
+    Output:
+        - losses[-1]    = the final loss after traning
+        - ws[-1]        = the final weights the training
+    """
     w = initial_w.copy()
     ws = [w]
     loss = compute_loss_LS(y, tx, w)
@@ -40,7 +66,17 @@ def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     return losses[-1], ws[-1]
 
 def least_squares(y, tx):
-    """Implementations of least squares regression using normal equation"""
+    """
+    Implementations of least squares regression using normal equation
+    
+    Input: 
+        - y         = the labels
+        - tx        = the samples
+
+    Output:
+        - losses   = the optimal loss of least squares
+        - ws       = the optimal weights of least squares
+    """
     a = tx.T.dot(tx)
     b = tx.T.dot(y)
     w = np.linalg.solve(a,b)
@@ -48,7 +84,17 @@ def least_squares(y, tx):
     return loss, w
 
 def ridge_regression(y, tx, lambda_):
-    """Implementations of ridge regression using normal equation"""
+    """
+    Implementations of ridge regression using normal equation
+
+    Input: 
+        - y         = the label
+        - tx        = the samples
+        - lambda    = the prefactor of L2 regularization term
+    Output:
+        - losses   = the optimal loss of ridge regression
+        - ws       = the optimal weights of ridge regression
+    """
     N = tx.shape[0]
     a = tx.T.dot(tx) + 2 * N * lambda_ * np.identity(tx.shape[1])
     b = tx.T.dot(y)
@@ -57,7 +103,20 @@ def ridge_regression(y, tx, lambda_):
     return loss, w
 
 def logistic_regression(y, tx, initial_w, max_iters, gamma):
-    """Implementations of logistic regression using gradient descent"""
+    """
+    Implementations of logistic regression using gradient descent
+
+    Input: 
+        - y         = the label
+        - tx        = the samples
+        - initial_w = the initial weights
+        - max_iters = the maximum number of iterations
+        - gamma     = learning rate (step size)
+
+    Output:
+        - losses[-1]    = the final loss after traning
+        - ws[-1]        = the final weights the training
+    """
     w = initial_w.copy()
     #print(w)
     loss = compute_loss_logistic(y, tx, w)
@@ -74,7 +133,21 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):
     return losses[-1],ws[-1]
 
 def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
-    """Implementations of regularized logistic regression using gradient descent"""
+    """
+    Implementations of regularized logistic regression using gradient descent
+    
+    Input: 
+        - y         = the label
+        - tx        = the samples
+        - initial_w = the initial weights
+        - max_iters = the maximum number of iterations
+        - gamma     = learning rate (step size)
+        - lambda_   = prefactor L2 regularization 
+
+    Output:
+        - losses[-1]    = the final loss after traning
+        - ws[-1]        = the final weights the training
+    """
     w = initial_w.copy()
     ws = [w]
     loss = compute_loss_logistic(y, tx, w)

@@ -3,14 +3,33 @@
 import numpy as np
 
 def compute_loss_LS(y, tx, w):
-    """compute the loss of least squares model."""
+    """compute the MSE loss of least squares model.
+
+    Input: 
+        - y     = the label
+        - tx    = the samples
+        - w     = the weights for LS model
+
+    Output:
+        - loss = the loss for given (y,tx,w)
+    """
     e = y - tx.dot(w)  
     loss =  1/2*np.mean(e**2)
     return loss
 
 
 def compute_gradient_LS(y, tx, w):
-    """compute the gradient of least squares model."""
+    """
+    compute the gradient of least squares model.
+
+    Input: 
+        - y     = the label
+        - tx    = the samples
+        - w     = the weights for LS model
+
+    Output:
+        - gradient = the gradient for given (y,tx,w)
+    """
     e = y - tx.dot(w)
     n_sample = y.shape[0]
     gradient = -1/n_sample*tx.T.dot(e)   
@@ -43,12 +62,26 @@ def batch_iter(y, tx, batch_size, num_batches=1, shuffle=True):
 
 
 def sigmoid(t):
-    """apply the sigmoid function on t."""
+    """
+    apply the sigmoid function on t.
+    Output:
+        - 1/(1+exp(-t))
+    """
 
     return 1 / (1 + np.exp(-t))
 
 def compute_loss_logistic(y,tx,w):
-    """compute the loss of logistic regression model."""
+    """
+    compute the binary cross entropy loss of logistic regression model. 
+    
+    Input: 
+        - y     = the label
+        - tx    = the samples
+        - w     = the weights for Logistic model
+
+    Output:
+        - gradient = the gradient for given (y,tx,w)
+    """
 
     tmp = tx.dot(w)
     loss = -y.T.dot(np.log(sigmoid(tmp))) + (y - 1).T.dot(np.log(1-sigmoid(tmp)))
@@ -56,7 +89,17 @@ def compute_loss_logistic(y,tx,w):
     return loss
 
 def compute_gradient_logistic(y, tx, w):
-    """compute the gradient of logistic regression model."""
+    """
+    compute the gradient of logistic regression model. (cross entropy loss)
+    
+    Input: 
+        - y     = the label
+        - tx    = the samples
+        - w     = the weights for Logistic model
+
+    Output:
+        - gradient = the gradient for given (y,tx,w)
+    """
     tmp = tx.dot(w)
     gradient = tx.T.dot(sigmoid(tmp) - y)
     return gradient
@@ -68,7 +111,17 @@ def compute_gradient_logistic(y, tx, w):
 #    return loss
 
 def compute_gradient_reg_logistic(y, tx, w, lambda_):
-    """compute the gradient of regularized logistic regression model."""
+    """
+    compute the gradient of regularized logistic regression model.
+    
+    Input: 
+        - y         = the label
+        - tx        = the samples
+        - w         = the weights for Logistic model
+        - lambda_   = the prefactor of L2 regularization term
+    Output:
+        - gradient  = the gradient for given (y,tx,w,lambda_)
+    """
 
     gradient = compute_gradient_logistic(y, tx, w) + lambda_ * w
     return gradient

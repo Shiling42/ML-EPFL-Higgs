@@ -9,6 +9,22 @@ null_idx_1 = [ 4,  5,  6, 12, 22, 26, 27, 28]
 null_idx_23 = [22]
 
 def jet_num_regroup(tx, y=[]):
+    """
+    Regroup data based on the PRI_jet_num
+    group A: PRI_jet_num = 0
+    group B: PRI_jet_num = 1
+    group C: PRI_jet_num = 2,3
+    
+    Input:
+        - tx    = sample features
+        - y     = labels (default as [] for unknown y)
+
+    Output:
+        - groupped data = [group A, group B, Group C]
+            where group A = [tx_A,idx_A]        if y = []
+                  group A = [tx_A,y_A,idx_A]    if y != []
+            
+    """
     # Regouping data
     ## Find the index of each group based on PRI_jet_num
     idx0 = np.where(tx[:,22]==0)[0]
@@ -43,6 +59,16 @@ def jet_num_regroup(tx, y=[]):
     '''
 
 def visualize_features(tx,y=[]):
+    """ 
+    Visualization of feature space
+    
+    Input: 
+        - tx    = sample features (n features)
+        - y     = labels
+
+    Output:
+        - n figures of features. If y!=[], the feature of y=1/0 are drawn and colored separately
+    """ 
     n_features = tx.shape[1]
     if y != []:
         # signals and backgrounds
@@ -64,6 +90,20 @@ def visualize_features(tx,y=[]):
     
 
 def mass_regroup(tx,y=[]):
+    """
+    Regroup data based on the DER_mass_MMC
+    group good mass: DER_mass_MMC is recorded
+    group bad mass: DER_mass_MMC is null (-999)
+
+    Input:
+        - tx    = sample features
+        - y     = labels
+    
+    Output:
+        - groupped data = [group good mass, group null mass]
+            where group good = [tx_good,idx_good]           if y = []
+                  group good = [tx_good,y_good,idx_good]    if y != []
+    """
     # delete null mass data
     idx_null_mass = np.where(tx[:,0]==-999)[0]
     idx_good_mass = np.where(tx[:,0]!=-999)[0]
@@ -82,6 +122,16 @@ def mass_regroup(tx,y=[]):
         #print('The mode must be train or predict')
 
 def outlier_cleaning_IQR(tx,n_IQR):
+    """
+    Clean outlier using IQR
+
+    Input:
+        tx      = sample features
+        n_IQR   = the range of good value  
+
+    Output:
+        tx      = sample feature with outliers replaced by mean
+    """
     for i in range(tx.shape[1]):
         q1_tx = np.quantile(tx[:,i], 0.25,axis=0)
         q3_tx = np.quantile(tx[:,i], 0.75,axis=0)
@@ -104,6 +154,16 @@ def outlier_cleaning_IQR(tx,n_IQR):
     return tx
 
 def outlier_cleaning_sigma(tx,n_sigma):
+    """
+    Clean outlier using sigma
+
+    Input:
+        tx      = sample features
+        n_sigma   = the range of good value  
+
+    Output:
+        tx      = sample feature with outliers replaced by mean
+    """
     for ite,ite_tx in enumerate(tx.T):
         ite_tx_mean = np.mean(ite_tx)
         ite_tx_std = np.std(ite_tx)
@@ -113,25 +173,35 @@ def outlier_cleaning_sigma(tx,n_sigma):
     return tx
 
 def feature_normalize(tx):
+    """
+    Standardize features
+
+    Input:
+        tx = (outlier free) sample features 
+
+    Output:
+        tx = standardized features
+    """
     mu = np.mean(tx,axis=0)
     sigma = np.std(tx,axis=0)
     return (tx-mu)/sigma
 
 def data_preprocess_predict(tx,outlier_method = 'IQR',n_out = 3):
-    '''
-    *Preprocess the unlabeled data (for which we need to use our model to predict)
-    Input:  tx - features
-            outlier_method - the method used to deal with outliers in features
-                             'IQR' or 'sigma
-            n_out - the range of good data, range_good = tx_mean +- n_out * (IQR or sigma)
+    """
+    Preprocess the unlabeled data (for which we need to use our model to predict)
+    
+    Input:  
+        - tx                = features
+        - outlier_method    = 'IQR' or 'sigma 
+        - n_out             = the range of good data, range_good = tx_mean +- n_out * (IQR or sigma)
 
-    Output: data_regrouped - array of with 6 element, each element is an groupe of data set (regrouped based on jet_num as mass)
-
-            data_regrouped = [data_groupe_1, ... , data_groupe_6]
-            data_groupe_1 = [tx_1,y_1,idx_1]
+    Output: 
+        - data_regrouped , array of with 6 element, each element is an groupe of data set (regrouped based on jet_num as mass)
+        - data_regrouped = [data_groupe_1, ... , data_groupe_6]
+        - data_groupe_1  = [tx_1,y_1,idx_1]
             
             where id_1 is the corresponding idxes in the original dataset
-    '''
+    """
     data_regrouped = []
     # firstly regroup data based on jet number
     data_grouped_jet = jet_num_regroup(tx)
@@ -160,21 +230,22 @@ def data_preprocess_predict(tx,outlier_method = 'IQR',n_out = 3):
 
 
 def data_preprocess_train(tx,y,outlier_method = 'IQR',n_out = 3):
-    '''
+    """
     *Preprocess the training data
-    Input:  tx - features
-            y - labels (0,1)
-            outlier_method - the method used to deal with outliers in features
-                             'IQR' or 'sigma
-            n_out - the range of good data, range_good = tx_mean +- n_out * (IQR or sigma)
+    Input:  
 
-    Output: data_regrouped - array of with 6 element, each element is an groupe of data set (regrouped based on jet_num as mass)
+        - tx                = features
+        - y                 = labels (0,1)
+        - outlier_method    = 'IQR' or 'sigma 
+        - n_out             = the range of good data, range_good = tx_mean +- n_out * (IQR or sigma)
 
-            data_regrouped = [data_groupe_1, ... , data_groupe_6]
-            data_groupe_1 = [tx_1,y_1,idx_1]
+    Output: 
+        - data_regrouped - array of with 6 element, each element is an groupe of data set (regrouped based on jet_num as mass)
+        - data_regrouped = [data_groupe_1, ... , data_groupe_6]
+        - data_groupe_1 = [tx_1,y_1,idx_1]
             
             where id_1 is the corresponding idxes in the original dataset
-    '''
+    """
     data_regrouped = []
     # firstly regroup data based on jet number
     data_regrouped_jet = jet_num_regroup(tx,y)
