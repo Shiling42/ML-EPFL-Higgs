@@ -6,7 +6,7 @@ from Implementations_helpers import *
 
 def least_squares_GD(y, tx, initial_w, max_iters, gamma):
     """Implementations of linear regression using gradient descent"""
-    w = initial_w
+    w = initial_w.copy()
     ws = [w]
     loss = compute_loss_LS(y, tx, w)
     losses = [loss]
@@ -23,7 +23,7 @@ def least_squares_GD(y, tx, initial_w, max_iters, gamma):
 
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     """Implementations of linear regression using stochastic gradient descent"""
-    w = initial_w
+    w = initial_w.copy()
     ws = [w]
     loss = compute_loss_LS(y, tx, w)
     losses = [loss]
@@ -58,7 +58,7 @@ def ridge_regression(y, tx, lambda_):
 
 def logistic_regression(y, tx, initial_w, max_iters, gamma):
     """Implementations of logistic regression using gradient descent"""
-    w = initial_w
+    w = initial_w.copy()
     #print(w)
     loss = compute_loss_logistic(y, tx, w)
     losses = [loss]
@@ -75,7 +75,7 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):
 
 def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
     """Implementations of regularized logistic regression using gradient descent"""
-    w = initial_w
+    w = initial_w.copy()
     ws = [w]
     loss = compute_loss_logistic(y, tx, w)
     losses = [loss]

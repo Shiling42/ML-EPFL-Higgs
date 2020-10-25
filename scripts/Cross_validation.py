@@ -38,12 +38,12 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
         tx_train = np.delete(tx, k_indices[i], axis = 0)
         y_train = np.delete(y, k_indices[i], axis = 0)
         if model == 'least_squares_GD':
-            loss_temp, w_temp = least_squares_GD(y_train, tx_train, initial_w, max_iters, gamma)
+            loss_temp, w_temp = least_squares_GD(y_train, tx_train, initial_w.copy(), max_iters, gamma)
             loss = loss + loss_temp
             accuracy_tmp= compute_accuracy(tx_test, y_test, w_temp, model)
             accuracy = accuracy + accuracy_tmp
         elif model == 'least_squares_SGD':
-            loss_temp, w_temp = least_squares_SGD(y_train, tx_train, initial_w, max_iters, gamma)
+            loss_temp, w_temp = least_squares_SGD(y_train, tx_train, initial_w.copy(), max_iters, gamma)
             loss = loss + loss_temp
             accuracy_tmp = compute_accuracy(tx_test, y_test, w_temp, model)
             accuracy = accuracy + accuracy_tmp
@@ -58,12 +58,12 @@ def cross_validation(y, tx, k_fold, lambda_ = 0.1, gamma = 0.7, initial_w =1, ma
             accuracy_tmp= compute_accuracy(tx_test, y_test, w_temp, model)
             accuracy = accuracy + accuracy_tmp
         elif model == 'logistic_regression':
-            loss_temp, w_temp = logistic_regression(y_train, tx_train, initial_w, max_iters, gamma)
+            loss_temp, w_temp = logistic_regression(y_train, tx_train, initial_w.copy(), max_iters, gamma)
             loss = loss + loss_temp
             accuracy_tmp= compute_accuracy(tx_test, y_test, w_temp, model)
             accuracy = accuracy + accuracy_tmp
         elif model == 'reg_logistic_regression':
-            loss_temp, w_temp = reg_logistic_regression(y_train, tx_train, lambda_, initial_w, max_iters, gamma)
+            loss_temp, w_temp = reg_logistic_regression(y_train, tx_train, lambda_, initial_w.copy(), max_iters, gamma)
             loss = loss + loss_temp
             accuracy_tmp= compute_accuracy(tx_test, y_test, w_temp, model)
             accuracy = accuracy + accuracy_tmp

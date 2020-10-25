@@ -8,11 +8,12 @@ def compute_loss_LS(y, tx, w):
     loss =  1/2*np.mean(e**2)
     return loss
 
+
 def compute_gradient_LS(y, tx, w):
     """compute the gradient of least squares model."""
     e = y - tx.dot(w)
     n_sample = y.shape[0]
-    gradient = -1/n_sample*tx.T.dot(e)
+    gradient = -1/n_sample*tx.T.dot(e)   
     return gradient
 
 def batch_iter(y, tx, batch_size, num_batches=1, shuffle=True):
@@ -51,13 +52,13 @@ def compute_loss_logistic(y,tx,w):
 
     tmp = tx.dot(w)
     loss = -y.T.dot(np.log(sigmoid(tmp))) + (y - 1).T.dot(np.log(1-sigmoid(tmp)))
-    loss = np.asscalar(loss)
+    loss = np.asscalar(loss)/y.shape[0]
     return loss
 
 def compute_gradient_logistic(y, tx, w):
     """compute the gradient of logistic regression model."""
     tmp = tx.dot(w)
-    gradient = tx.T.dot(sigmoid(tmp) - y)
+    gradient = tx.T.dot(sigmoid(tmp) - y)/y.shape[0]
     return gradient
 
 #def compute_loss_reg_logistic(y, tx, w, lambda_):
