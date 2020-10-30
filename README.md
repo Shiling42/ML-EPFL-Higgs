@@ -60,7 +60,7 @@ Six machine learning methods are implemented for this Higgs boson identification
 The implementations of these methods are in `./data/implementation.py`.
 
 ## Result
-To get the `prediction.csv`, go to `./script` and run `python run.py`.
+To get the `prediction.csv`, go to `./script` and run `python run.py`. And don't forget to unzip `test.csv.zip` in `/data`.
 
 On [Aicrowd Leaderboard](https://www.aicrowd.com/challenges/epfl-machine-learning-higgs/leaderboards):
 
